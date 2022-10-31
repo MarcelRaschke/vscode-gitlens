@@ -2,32 +2,34 @@ import { attr, css, customElement, FASTElement, html, ref, repeat, volatile, whe
 import { focusOutline, srOnly } from '../../../shared/components/styles/a11y';
 import { elementBase } from '../../../shared/components/styles/base';
 
+import '../../../shared/components/table/table-cell';
+
 const template = html<WorkspaceItem>`
 	<template role="row" @click="${(x, c) => x.selectRow(c.event)}">
-		<td class="sr-only">
+		<table-cell class="sr-only">
 			<button type="button">select workspace</button>
-		</td>
-		<td>
+		</table-cell>
+		<table-cell>
 			<slot name="name"></slot>
-		</td>
-		<td>
+		</table-cell>
+		<table-cell>
 			<slot name="description"></slot>
-		</td>
-		<td ${ref('count')}>
+		</table-cell>
+		<table-cell ${ref('count')}>
 			<slot name="count"></slot>
-		</td>
-		<td>
+		</table-cell>
+		<table-cell>
 			<slot name="updated"></slot>
-		</td>
-		<td ${ref('shared')}>
+		</table-cell>
+		<table-cell ${ref('shared')}>
 			<slot name="shared"></slot>
-		</td>
-		<td>
+		</table-cell>
+		<table-cell>
 			<slot name="owner"></slot>
-		</td>
-		<td class="actions" ${ref('actions')}>
+		</table-cell>
+		<table-cell class="actions" ${ref('actions')}>
 			<slot name="actions"></slot>
-		</td>
+		</table-cell>
 	</template>
 `;
 
@@ -39,19 +41,8 @@ const styles = css`
 		cursor: pointer;
 	}
 
-	:host(:hover),
-	:host(:focus-within) {
-		background-color: var(--background-05);
-	}
-
 	:host(:focus) {
 		${focusOutline}
-	}
-
-	td {
-		padding: 0.8rem 1.2rem;
-		border-bottom: 1px solid var(--table-separator);
-		vertical-align: middle;
 	}
 
 	.actions {

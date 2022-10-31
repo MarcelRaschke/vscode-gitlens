@@ -2,72 +2,42 @@ import { attr, css, customElement, FASTElement, html, repeat, volatile, when } f
 import { srOnly } from '../../../shared/components/styles/a11y';
 import { elementBase } from '../../../shared/components/styles/base';
 
+import '../../../shared/components/table/table-container';
+import '../../../shared/components/table/table-row';
+import '../../../shared/components/table/table-cell';
+
 const template = html<WorkspaceList>`
-	<template role="table">
-		<div class="thead" role="rowgroup">
-			<div class="row" role="row">
-				<div class="cell cell--header sr-only" role="columnheader">Row selection</div>
-				<div class="cell cell--header" role="columnheader">Workspace</div>
-				<div class="cell cell--header" role="columnheader">Description</div>
-				<div class="cell cell--header" role="columnheader"># of repos</div>
-				<div class="cell cell--header" role="columnheader">Latest update</div>
-				<div class="cell cell--header" role="columnheader">Shared with</div>
-				<div class="cell cell--header" role="columnheader">Owner</div>
-				<div class="cell cell--header" role="columnheader"><span class="sr-only">Workspace actions</span></div>
-			</div>
-		</div>
-		<div class="tbody" role="rowgroup">
-			<slot>
-				<div class="row" role="row">
-					<div class="cell sr-only" role="cell"></div>
-					<div class="cell" role="cell">No workspaces</div>
-					<div class="cell" role="cell"></div>
-					<div class="cell" role="cell"></div>
-					<div class="cell" role="cell"></div>
-					<div class="cell" role="cell"></div>
-					<div class="cell" role="cell"></div>
-					<div class="cell" role="cell"></div>
-				</div>
-			</slot>
-		</div>
-	</template>
+	<table-container>
+		<table-row slot="head">
+			<table-cell header="column" pinned class="sr-only">Row selection</table-cell>
+			<table-cell header="column" pinned>Workspace</table-cell>
+			<table-cell header="column" pinned>Description</table-cell>
+			<table-cell header="column" pinned># of repos</table-cell>
+			<table-cell header="column" pinned>Latest update</table-cell>
+			<table-cell header="column" pinned>Shared with</table-cell>
+			<table-cell header="column" pinned>Owner</table-cell>
+			<table-cell header="column" pinned><span class="sr-only">Workspace actions</span></table-cell>
+		</table-row>
+		<slot>
+			<table-row>
+				<table-cell class="sr-only"></table-cell>
+				<table-cell>No workspaces</table-cell>
+				<table-cell></table-cell>
+				<table-cell></table-cell>
+				<table-cell></table-cell>
+				<table-cell></table-cell>
+				<table-cell></table-cell>
+				<table-cell></table-cell>
+			</table-row>
+		</slot>
+	</table-container>
 `;
 
 const styles = css`
 	${elementBase}
 
-	:host {
-		display: table;
-		border-collapse: collapse;
-		width: 100%;
-	}
-
-	.thead {
-		display: table-header-group;
-		color: var(--table-heading);
-	}
-
-	.tbody {
-		display: table-row-group;
-		color: var(--table-text);
-	}
-
 	.row {
 		display: table-row;
-	}
-
-	.cell {
-		display: table-cell;
-		vertical-align: middle;
-		padding: 0.8rem 1.2rem;
-		border-bottom: 1px solid var(--table-separator);
-	}
-
-	.cell--header {
-		text-align: left;
-		text-transform: uppercase;
-		font-weight: normal;
-		padding: 0 1.2rem 1.2rem;
 	}
 
 	${srOnly}

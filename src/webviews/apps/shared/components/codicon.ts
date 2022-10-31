@@ -1504,6 +1504,10 @@ export class CodeIcon extends LitElement {
 			font-family: 'glicons';
 			content: '\\f102';
 		}
+		:host([icon='gl-clock']):before {
+			font-family: 'glicons';
+			content: '\\f11d';
+		}
 
 		@keyframes codicon-spin {
 			100% {
