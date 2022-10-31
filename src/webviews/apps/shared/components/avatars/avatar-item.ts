@@ -21,7 +21,7 @@ const styles = css`
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		transition: transform ease 200ms;
+		transition: transform ease 200ms, z-index ease 0 200ms;
 		font-size: calc(var(--avatar-size) * 0.42);
 	}
 
